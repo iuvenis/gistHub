@@ -1,0 +1,31 @@
+{
+  "name": "gistManager",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "passport": "^0.3.2",
+    "passport-github2": "^0.1.10"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "browser-sync": "^2.12.8",
+    "gulp": "^3.9.1",
+    "gulp-add": "0.0.2",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-connect": "^4.0.0",
+    "gulp-nodemon": "^2.0.7",
+    "gulp-sourcemaps": "^1.6.0",
+    "node-sass": "^3.7.0",
+    "query-string": "^4.1.0",
+    "querystring": "^0.2.0",
+    "webpack": "^1.13.0"
+  }
+}
