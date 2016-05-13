@@ -10,8 +10,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
 
-var GITHUB_CLIENT_ID = "0e7410bd9b6abcf4064b";
-var GITHUB_CLIENT_SECRET = "80a0a63535d6b9f37bf73a33c0831d829e2d85ec";
 
 passport.serializeUser(function(user, done) {
   done(null, user);
