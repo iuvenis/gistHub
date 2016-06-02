@@ -1,16 +1,18 @@
 'use strict';
+
 const express        = require('express'),
-      ghClient       = require('./public/keys.js'),
-      passport       = require('passport'),
-      GitHubStrategy = require('passport-github2').Strategy,
-      queryString    = require('query-string'),
-      PORT           = process.env.PORT || 3000;
+const ghClient       = require('./public/js/keys.js'),
+const passport       = require('passport'),
+const GitHubStrategy = require('passport-github2').Strategy,
+const queryString    = require('query-string'),
+const gistRouter     = require('./public/js/router.js'),
+const PORT           = process.env.PORT || 3000;
+
 const app            = express();
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(__dirname + '/public'));
-
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -44,20 +46,23 @@ app.get('/user', function(req, res){
 
 app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/' }),
-  function(req, res) {
-
-    var resData = queryString.stringify({
+  function(req, res, next) {
+    // console.log(res);
+    let username = req.user.username;
+    let resData = queryString.stringify({
       id          : req.user.id,
       username    : req.user.username,
       accessToken : req.user.accessToken,
     });
-    var profileData = queryString.stringify({
+    let profileData = queryString.stringify({
       displayName : req.user.displayName,
       avatarUrl   : req.user._json.avatar_url,
       publicGists : req.user._json.public_gists
     });
     res.redirect('/?' + resData);
+    next();
   });
+
 
 app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`);
